@@ -1,0 +1,196 @@
+<%- include("partials/header") %>
+    <script src="/js/mealcalculator.js"></script>
+    <div class="container">
+        <h1 class="my-5 mx-5">Calcul des valeurs nutritionnelles et du prix d'un repas</h1>
+        <p id="explanation">Vous pouvez sélectionner dans la table Ciqual des aliments à ajouter à votre repas et pour chaque aliment, saisir la quantité que votre repas incorporera ainsi que son prix au kg si vous le connaissez. <br>
+        Chaque ligne du tableau vous indiquera alors le prix et les valeurs nutritionnelles apportées par chaque aliment. <br>
+        En bas de tableau, vous pourrez lire le prix de revient et les valeurs nutritionnelles de l'ensemble de votre repas.</p>
+
+
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+            Choisir des aliments
+        </button>
+
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-xl" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Table des aliments du Ciqual</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body" id="table_modal_body">
+                            <div class="row">
+                                <div id="table_container" class="container-table-ciqual col-8">
+                                    <table class="table table-hover" id="ciqual_table">
+                                        <thead></thead>
+                                        <tbody></tbody>
+                                        <tfoot></tfoot>
+                                    </table>
+                                </div>
+
+                                <div class="col-4">
+                                    <div class="row">
+                                        <div class="col-1 d-flex align-items-center">
+                                            <i class="fas fa-search"></i>
+                                        </div>
+                                        <div class="col-10">
+                                            <input class="form-control mr-sm-2 clear-search-bar" type="text" placeholder="Chercher un aliment..." aria-label="Search">
+                                        </div>
+                                        <div class="col-1 d-flex align-items-center pl-0">
+                                            <i class="fas fa-eraser"></i>
+                                        </div>                                        
+                                    </div>
+                                    <div class="row checked-elements-container">
+                                        <ul></ul>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container-table-meal">
+            <table class="table table-hover my-5 hidden" id="table_meal">
+                <thead></thead>
+                <tbody></tbody>
+                <tfoot></tfoot>
+            </table>
+        </div>
+        
+
+        <div class="alert alert-info text-center mt-5" id="message_empty_meal">
+            <p>
+                Vous n'avez pas encore sélectionné d'aliments. <a href="#" id="open_ciqual" data-toggle="modal" data-target="#exampleModal">Cliquez ici</a> pour afficher la table Ciqual et construire votre repas !
+            </p>
+        </div>
+
+
+        <div class="container-nutritional-values-choice hidden">        
+            <h5 class="nutritional-checkboxes-title">Valeurs nutritionnelles affichées</h5>
+
+            <div class="container container-nutritional-checkboxes">
+                <li><input type="checkbox" id="energie_ue_kcal"><label>Énergie</label></li>
+                <li><input type="checkbox" id="proteines_cat"><label>Protéines</label></li>
+                <li>
+                    <ul>
+                        <li><input type="checkbox" id="proteines"><label>Protéines</label></li>
+                        <li><input type="checkbox" id="proteines_brutes"><label>Protéines brutes</label></li>
+                    </ul>
+                </li>
+                <li><input type="checkbox" id="glucides_cat"><label>Glucides</label></li>
+                <li>
+                    <ul>
+                        <li><input type="checkbox" id="glucides"><label>Glucides totaux</label></li>
+                        <li><input type="checkbox" id="sucres"><label>Sucres</label></li>
+                        <li><input type="checkbox" id="amidon"><label>Amidon</label></li>
+                    </ul>
+                </li>
+                <li><input type="checkbox" id="lipides_cat"><label>Lipides</label></li>
+                <li>
+                    <ul>
+                        <li><input type="checkbox" id="lipides"><label>Lipides totaux</label></li>
+                        <li><input type="checkbox" id="acides_gras_satures_cat"><label>Acides gras saturés</label></li>
+                        <li>
+                            <ul>
+                                <li><input type="checkbox" id="acides_gras_satures"><label>Acides gras saturés totaux</label></li>
+                                <li><input type="checkbox" id="acide_butyrique"><label>Acide butyrique</label></li>
+                                <li><input type="checkbox" id="acide_caproique"><label>Acide caproïque</label></li>
+                                <li><input type="checkbox" id="acide_caprylique"><label>Acide caprylique</label></li>
+                                <li><input type="checkbox" id="acide_caprique"><label>Acide caprique</label></li>
+                                <li><input type="checkbox" id="acide_laurique"><label>Acide laurique</label></li>
+                                <li><input type="checkbox" id="acide_myristique"><label>Acide myristique</label></li>
+                                <li><input type="checkbox" id="acide_palmitique"><label>Acide palmitique</label></li>
+                                <li><input type="checkbox" id="acide_stearique"><label>Acide stéarique</label></li>
+                            </ul>
+                        </li>
+                        <li><input type="checkbox" id="acides_gras_insatures_cat"><label>Acides gras insaturés</label></li>
+                        <li>
+                            <ul>
+                                <li><input type="checkbox" id="acides_gras_insatures"><label>Acides gras insaturés totaux</label></li>
+                                <li><input type="checkbox" id="acides_gras_monoinsatures_cat"><label>Acides gras monoinsaturés</label></li>
+                                <li>
+                                    <ul>
+                                        <li><input type="checkbox" id="acides_gras_monoinsatures"><label>Acides gras monoinsaturés totaux</label></li>
+                                        <li><input type="checkbox" id="acide_oleique"><label>Acide oléique</label></li>
+                                    </ul>
+                                </li>
+                                <li><input type="checkbox" id="acides_gras_polyinsatures_cat"><label>Acides gras polyinsaturés</label></li>
+                                <li>
+                                    <ul>
+                                        <li><input type="checkbox" id="acides_gras_polyinsatures"><label>Acides gras polyinsaturés totaux</label></li>
+                                        <li><input type="checkbox" id="acide_linoleique"><label>Acide linoléique (omega-6)</label></li>
+                                        <li><input type="checkbox" id="acide_alpha_linolenique"><label>Acide alpha-linolénique (omega-3)</label></li>
+                                        <li><input type="checkbox" id="acide_arachidonique"><label>Acide arachidonique</label></li>
+                                        <li><input type="checkbox" id="epa"><label>EPA</label></li>
+                                        <li><input type="checkbox" id="dha"><label>DHA</label></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li><input type="checkbox" id="cholesterol"><label>Cholestérol</label></li>
+                    </ul>
+                </li>
+                <li><input type="checkbox" id="fibres"><label>Fibres</label></li>
+                <li><input type="checkbox" id="vitamines_cat"><label>Vitamines</label></li>
+                <li>
+                    <ul>
+                        <li><input type="checkbox" id="vitamine_a"><label>Vitamine A</label></li>
+                        <li>
+                            <ul>
+                                <li><input type="checkbox" id="retinol"><label>Rétinol</label></li>
+                                <li><input type="checkbox" id="beta_carotene"><label>Bêta-carotène</label></li>
+                            </ul>
+                        </li>
+                        <li><input type="checkbox" id="vitamine_b1"><label>Vitamine B1</label></li>
+                        <li><input type="checkbox" id="vitamine_b2"><label>Vitamine B2</label></li>
+                        <li><input type="checkbox" id="vitamine_b3"><label>Vitamine B3</label></li>
+                        <li><input type="checkbox" id="vitamine_b5"><label>Vitamine B5</label></li>
+                        <li><input type="checkbox" id="vitamine_b6"><label>Vitamine B6</label></li>
+                        <li><input type="checkbox" id="vitamine_b9"><label>Vitamine B9</label></li>
+                        <li><input type="checkbox" id="vitamine_b12"><label>Vitamine B12</label></li>
+                        <li><input type="checkbox" id="vitamine_c"><label>Vitamine C</label></li>
+                        <li><input type="checkbox" id="vitamine_d"><label>Vitamine D</label></li>
+                        <li><input type="checkbox" id="vitamine_e"><label>Vitamine E</label></li>
+                        <li><input type="checkbox" id="vitamine_k"><label>Vitamine K</label></li>
+                        <li>
+                            <ul>
+                                <li><input type="checkbox" id="vitamine_k1"><label>Vitamine K1</label></li>
+                                <li><input type="checkbox" id="vitamine_k2"><label>Vitamine K2</label></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li><input type="checkbox" id="mineraux_cat"><label>Minéraux</label></li>
+                <li>
+                    <ul>
+                        <li><input type="checkbox" id="sel"><label>Sel</label></li>
+                        <li><input type="checkbox" id="calcium"><label>Calcium</label></li>
+                        <li><input type="checkbox" id="chlorure"><label>Chlorure</label></li>
+                        <li><input type="checkbox" id="cuivre"><label>Cuivre</label></li>
+                        <li><input type="checkbox" id="fer"><label>Fer</label></li>
+                        <li><input type="checkbox" id="iode"><label>Iode</label></li>
+                        <li><input type="checkbox" id="magnesium"><label>Magnésium</label></li>
+                        <li><input type="checkbox" id="manganese"><label>Manganèse</label></li>
+                        <li><input type="checkbox" id="phosphore"><label>Phosphore</label></li>
+                        <li><input type="checkbox" id="potassium"><label>Potassium</label></li>
+                        <li><input type="checkbox" id="selenium"><label>Sélénium</label></li>
+                        <li><input type="checkbox" id="sodium"><label>Sodium</label></li>
+                        <li><input type="checkbox" id="zinc"><label>Zinc</label></li>
+                    </ul>
+                </li>
+                <li><input type="checkbox" id="eau"><label>Eau</label></li>
+                <li><input type="checkbox" id="acides_organiques"><label>Acides organiques autres</label></li>
+                <li><input type="checkbox" id="polyols"><label>Polyols</label></li>
+                <li><input type="checkbox" id="cendres"><label>Cendres</label></li>
+                <li><input type="checkbox" id="alcool"><label>Alcool</label></li>
+            </div> 
+        </div>
+    </div>
+<%- include("partials/footer") %>
+    

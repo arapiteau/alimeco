@@ -1,0 +1,1 @@
+mongodb+srv://dbUser:5ct3jbzx@cluster0.hn9l2.mongodb.net/alimeco?retryWrites=true&w=majority

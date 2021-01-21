@@ -1,0 +1,124 @@
+table.table.table-hover tr.selected-row {
+    background-color: #86C8B6;
+}
+
+table.table.table-hover tr.selected-row:hover {
+    background-color: #78C2AD;
+}
+
+table.table.table-hover tr.selected-row td {
+    color: white;
+}
+
+.checked-elements-container {
+    margin-top: 20px;
+    padding-left: 15px;
+    max-height: calc(100vh - 259px);
+    overflow: auto;
+}
+
+.checked-elements-container ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.checked-elements-container li .checked-element-text {
+    font-size: 0.75rem;
+}
+
+.checked-elements-container .delete-btn {
+    /* background-color: #e74c3c; */
+    height: 20px;
+    margin-right: 20px;
+    text-align: center;
+    /* color: ; */
+    width: 20px;
+    display: inline-block;    
+    transition: 0.2s linear;
+    opacity: 1;
+}
+
+table#table_meal {
+    overflow: auto;
+    font-size: 0.75rem; 
+}
+
+table#table_meal>thead>tr>th {
+    font-size: 0.75rem;
+}
+
+table#table_meal>tbody>tr>td {
+    min-width: 6.5vw;
+}
+
+table#table_meal .aliment {
+    min-width: 15vw;
+}
+
+table#table_meal td:nth-of-type(odd) {
+    background-color: rgb(230, 230, 230);
+}
+
+#dim_page {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+#ciqual_window {
+    background-color: white;
+    height: 70vh;
+    width: 70vw;
+    margin: auto;
+}
+
+#close_pop_up {
+    position: absolute;
+    cursor: pointer;
+}
+
+.hidden {
+    display: none;
+}
+
+.container-table-ciqual {
+    max-height: calc(100vh - 200px);
+    overflow: auto;
+}
+
+.container-table-meal {
+    overflow: auto;
+}
+
+.nutritional-checkboxes-title {
+    margin: 50px 0 20px 0;
+}
+
+.container-nutritional-checkboxes {
+    display: flex;
+    flex-direction: column;
+    height: 600px;
+    flex-wrap: wrap;
+    /* overflow: auto; */
+}
+
+.container-nutritional-checkboxes li {
+    list-style-type: none;
+}
+
+.container-nutritional-checkboxes li label {
+    padding-left: 15px;
+}
+
+.alert-light label, .alert-light legend, .card.bg-light label, .card.bg-light legend {
+    font-weight: bold;
+}
+
+.form-group label {
+    font-weight: bold;
+}
+
